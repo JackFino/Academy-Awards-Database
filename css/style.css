@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700");
+
+
+/*----Navbar----*/
+
+.navbar{
+    border: .5px solid #dedede;
+    border-radius: 2px;
+    display: inline;
+    margin: 0;
+    overflow: hidden;
+    width: 100%; 
+    height: 50%
+    padding: 0;
+    position: fixed;
+    top: 0;
+    -webkit-position: -webkit-fixed;
+    -moz-position: fixed;
+    -o-position: fixed;
+    z-index: 3;
+    background-color: #002142;
+    ;
+
+}
+
+.mt-n1 {
+  margin-top: -0.25rem !important;
+}
+
+
+
+
+
+
+
+
+/*---Datatable----*/
+
+
+#nominees-table {
+  
+}
+
+
+#instructions {
+  text-align: center;
+  font-size: larger;
+}

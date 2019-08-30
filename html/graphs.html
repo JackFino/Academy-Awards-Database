@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Graphs </title>
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+    <script type="text/javascript" src="../plugs/d3.min.js"></script>
+    <script type="text/javascript" src="../plugs/crossfilter.min.js"></script>
+    <script type="text/javascript" src="../plugs/dc.js"></script>
+    <script type="text/javascript" src="../plugs/queue.min.js"></script>
+
+
+</head>
+
+<body style="background-color:#fafafa;text-align:center;">
+
+
+    <nav class="navbar navbar-fixed-top navbar-expand-lg" id="navbar">
+        <img src="../logo.png" alt="Academy Awards Database Logo"> </a>
+
+
+
+        </div>
+    </nav>
+
+
+    <container id="female-genre"> </container>
+
+
+
+
+</body>
+
+</html>
+
+
+<script>
+    function makeGraphs(error, actressStats) {
+        var ndx = crossfilter(actressStats);
+
+
+        actressStats.forEach(function(d) {
+            d.Genre = parseInt(d.Genre);
+            
+        });
+
+        var name_dim = ndx.dimension(dc.pluck('name'));
+        var winner_per_genre = name_dim.group().reduceSum(dc.pluck('Genre'));
+
+
+        dc.pieChart("female-genre")
+            .height(800)
+            .radius(270)
+            .transitionDuration(1500)
+            .dimension(name_dim)
+            .group(winner_per_genre);
+
+
+        dc.renderAll();
+    }
+
+
+
+
+
+
+    var actressStats = [
+
+        { "name": "Janet Gaynor", "Genre": "Silent", "Age": 22, "Birthplace": "America", "Film": "7th Heaven", "Year": "1928" },
+        { "name": "Mary Pickford", "Genre": "Drama", "Age": 37, "Birthplace": "Canada", "Film": "Coquette", "Year": "1929" },
+        { "name": "Norma Shearer", "Genre": "Drama", "Age": 28, "Birthplace": "Canada", "Film": "The Divorcee", "Year": "1930" },
+        { "name": "Marie Dressler", "Genre": "Comedy", "Age": 63, "Birthplace": "Canada", "Film": "Min And Bill", "Year": "1931" },
+        { "name": "Helen Hayes", "Genre": "Drama", "Age": 31, "Birthplace": "America", "Film": "The Sin of Madelon Claudet", "Year": "1932" },
+        { "name": "Katharine Hepburn", "Genre": "Drama", "Age": 26, "Birthplace": "America", "Film": "Morning Glory", "Year": "1933" },
+        { "name": "Claudette Colbert", "Genre": "Rom-Com", "Age": 31, "Birthplace": "France", "Film": "It Happened One Night", "Year": "1934" },
+        { "name": "Bette Davis", "Genre": "Drama", "Age": 27, "Birthplace": "America", "Film": "Dangerous", "Year": "1935" },
+        { "name": "Luise Rainer", "Genre": "Musical", "Age": 26, "Birthplace": "Germany", "Film": "The Great Ziegfield", "Year": "1936" },
+        { "name": "Luise Rainer(2nd)", "Genre": "Drama", "Age": 27, "Birthplace": "Germany", "Film": "The Good Earth", "Year": "1937" },
+        { "name": "Bette Davis(2nd)", "Genre": "Drama", "Age": 30, "Birthplace": "America", "Film": "Jezebel", "Year": "1938" },
+        { "name": "Vivien Leigh", "Genre": "Romantic-Drama", "Age": 26, "Birthplace": "England", "Film": "Gone With The Wind", "Year": "1939" },
+        { "name": "Ginger Rodgers", "Genre": "Drama", "Age": 29, "Birthplace": "America", "Film": "Kitty Foyle", "Year": "1940" },
+        { "name": "Joan Fontaine", "Genre": "Thriller", "Age": 24, "Birthplace": "Japan", "Film": "Suspicion", "Year": "1941" },
+        { "name": "Greer Garson", "Genre": "Drama", "Age": 38, "Birthplace": "England", "Film": "Mrs Miniver", "Year": "1942" },
+        { "name": "Jennifer Jones", "Genre": "Drama", "Age": 24, "Birthplace": "America", "Film": "The Song Of Bernadette", "Year": "1943" },
+        { "name": "Ingrid Bergman", "Genre": "Thriller", "Age": 29, "Birthplace": "Sweden", "Film": "Gaslight", "Year": "1944" },
+        { "name": "Joan Crawford", "Genre": "Noir", "Age": 41, "Birthplace": "America", "Film": "Mildred Pierce", "Year": "1945" },
+        { "name": "Olivia de Havilland", "Genre": "Romantic", "Age": 30, "Birthplace": "Japan", "Film": "To Each His Own", "Year": "1946" },
+        { "name": "Loretta Young", "Genre": "Comedy", "Age": 30, "Birthplace": "America", "Film": "The Farmer's Daughter", "Year": "1947" },
+        { "name": "Jane Wyman", "Genre": "Drama", "Age": 31, "Birthplace": "America", "Film": "Johnny Belinda", "Year": "1948" },
+        { "name": "Olivia de Havilland(2nd)", "Genre": "Drama", "Age": 33, "Birthplace": "Japan", "Film": "The Heiress", "Year": "1949" },
+        { "name": "Judy Holliday", "Genre": "Comedy", "Age": 29, "Birthplace": "America", "Film": "Born Yesterday", "Year": "1950" },
+        { "name": "Vivien Leigh(2nd)", "Genre": "Drama", "Age": 38, "Birthplace": "England", "Film": "A Streetcar Named Desire", "Year": "1951" },
+        { "name": "Shirley Booth", "Genre": "Drama", "Age": 54, "Birthplace": "America", "Film": "Come Back, Little Sheba", "Year": "1952" },
+        { "name": "Audrey Hepburn", "Genre": "Romantic", "Age": 24, "Birthplace": "Switzerland", "Film": "Roman Holiday", "Year": "1953" },
+        { "name": "Grace Kelly", "Genre": "Drama", "Age": 25, "Birthplace": "America", "Film": "The Country Girl", "Year": "1954" },
+        { "name": "Anna Magnari", "Genre": "Drama", "Age": 47, "Birthplace": "Italy", "Film": "The Rose Tattoo", "Year": "1955" },
+        { "name": "Ingrid Bergman", "Genre": "Drama", "Age": 41, "Birthplace": "Sweden", "Film": "Anastasia", "Year": "1956" },
+        { "name": "Joanne Woodward", "Genre": "Drama", "Age": 27, "Birthplace": "America", "Film": "The Three Faces Of Eve", "Year": "1957" },
+        { "name": "Susan Hayward", "Genre": "Drama", "Age": 41, "Birthplace": "America", "Film": "I Want To Live!", "Year": "1958" },
+        { "name": "Simone Signoret", "Genre": "Drama", "Age": 38, "Birthplace": "Germany", "Film": "Room At The Top", "Year": "1959" },
+        { "name": "Elizabeth Taylor", "Genre": "Drama", "Age": 28, "Birthplace": "England", "Film": "Butterfield 8", "Year": "1960" },
+        { "name": "Sophia Loren", "Genre": "Drama", "Age": 27, "Birthplace": "Italy", "Film": "Two Women", "Year": "1961" },
+        { "name": "Anne Bancroft", "Genre": "Drama", "Age": 31, "Birthplace": "America", "Film": "The Miracle Worker", "Year": "1962" },
+        { "name": "Patricia Neal", "Genre": "Western", "Age": 37, "Birthplace": "America", "Film": "Hud", "Year": "1963" },
+        { "name": "Julie Andrews", "Genre": "Musical", "Age": 29, "Birthplace": "England", "Film": "Mary Poppins", "Year": "1964" },
+        { "name": "Julie Christie", "Genre": "Drama", "Age": 25, "Birthplace": "India", "Film": "Darling", "Year": "1965" },
+        { "name": "Elizabeth Taylor(2nd)", "Genre": "Comedy", "Age": 34, "Birthplace": "England", "Film": "Who's Afraid Of Virginia Woolf", "Year": "1966" },
+        { "name": "Katharine Hepburn(2nd)", "Genre": "Comedy", "Age": 60, "Birthplace": "America", "Film": "Guess Who's Coming To Dinner", "Year": "1967" },
+        { "name": "Katharine Hepburn(3rd)", "Genre": "Drama", "Age": 61, "Birthplace": "America", "Film": "The Lion In Winter", "Year": "1968" },
+        { "name": "Barbra Streisand", "Genre": "Musical", "Age": 26, "Birthplace": "America", "Film": "Funny Girl", "Year": "1968" },
+        { "name": "Maggie Smith", "Genre": "Drama", "Age": 35, "Birthplace": "England", "Film": "The Prime Of Ms.Jean Brodie", "Year": "1969" },
+        { "name": "Glenda Jackson", "Genre": "Romantic", "Age": 34, "Birthplace": "England", "Film": "Women In Love", "Year": "1970" },
+        { "name": "Jane Fonda", "Genre": "Thriller", "Age": 34, "Birthplace": "America", "Film": "Klute", "Year": "1971" },
+        { "name": "Liza Minelli", "Genre": "Musical", "Age": 26, "Birthplace": "America", "Film": "Cabaret", "Year": "1972" },
+        { "name": "Glenda Jackson(2nd)", "Genre": "Romantic", "Age": 37, "Birthplace": "England", "Film": "A Touch Of Class", "Year": "1973" },
+        { "name": "Ellen Burstyn", "Genre": "Romantic", "Age": 42, "Birthplace": "America", "Film": "Alice Doesnt Live Here Anymore", "Year": "1974" },
+        { "name": "Louise Fletcher", "Genre": "Comedy", "Age": 41, "Birthplace": "America", "Film": "One Flew Over The Cuckoo's Nest", "Year": "1975" },
+        { "name": "Faye Dunaway", "Genre": "Comedy", "Age": 35, "Birthplace": "America", "Film": "Network", "Year": "1976" },
+        { "name": "Diane Keaton", "Genre": "Rom-Com", "Age": 31, "Birthplace": "America", "Film": "Annie Hall", "Year": "1977" },
+        { "name": "Jane Fonda(2nd)", "Genre": "Drama", "Age": 41, "Birthplace": "America", "Film": "Coming Home", "Year": "1978" },
+        { "name": "Sally Field", "Genre": "Drama", "Age": 33, "Birthplace": "America", "Film": "Norma Rae", "Year": "1979" },
+        { "name": "Sissy Spacek", "Genre": "Musical", "Age": 31, "Birthplace": "America", "Film": "Coal Miner's Daughter", "Year": "1980" },
+        { "name": "Katharine Hepburn(4th)", "Genre": "Drama", "Age": 74, "Birthplace": "America", "Film": "On Golden Pond", "Year": "1981" },
+        { "name": "Meryl Streep", "Genre": "Drama", "Age": 33, "Birthplace": "America", "Film": "Sophie's Choice", "Year": "1982" },
+        { "name": "Shirley Maclaine", "Genre": "Comedy", "Age": 49, "Birthplace": "America", "Film": "Terms Of Endearment", "Year": "1983" },
+        { "name": "Sally Field(2nd)", "Genre": "Drama", "Age": 38, "Birthplace": "America", "Film": "Places In The Heart", "Year": "1984" },
+        { "name": "Geraldine Page", "Genre": "Drama", "Age": 61, "Birthplace": "America", "Film": "The Trip To Bountiful", "Year": "1985" },
+        { "name": "Marlee Matlin", "Genre": "Drama", "Age": 21, "Birthplace": "America", "Film": "Children Of A Lesser God", "Year": "1986" },
+        { "name": "Cher", "Genre": "Rom-Com", "Age": 41, "Birthplace": "America", "Film": "Moonstruck", "Year": "1987" },
+        { "name": "Jodie Foster", "Genre": "Drama", "Age": 26, "Birthplace": "America", "Film": "The Accused", "Year": "1988" },
+        { "name": "Jessica Tandy", "Genre": "Drama", "Age": 80, "Birthplace": "England", "Film": "Driving Ms.Daisy", "Year": "1989" },
+        { "name": "Kathy Bates", "Genre": "Thriller", "Age": 42, "Birthplace": "America", "Film": "Misery", "Year": "1990" },
+        { "name": "Jodie Foster(2nd)", "Genre": "Psychological", "Age": 29, "Birthplace": "America", "Film": "The Silence Of The Lambs", "Year": "1991" },
+        { "name": "Emma Thompson", "Genre": "Romantic-Drama", "Age": 33, "Birthplace": "England", "Film": "Howard's End", "Year": "1992" },
+        { "name": "Holly Hunter", "Genre": "Drama", "Age": 35, "Birthplace": "America", "Film": "The Piano", "Year": "1993" },
+        { "name": "Jessica Lange", "Genre": "Drama", "Age": 45, "Birthplace": "America", "Film": "Blue Sky", "Year": "1994" },
+        { "name": "Susan Sarandon", "Genre": "Drama", "Age": 49, "Birthplace": "America", "Film": "Dead Man Walking", "Year": "1995" },
+        { "name": "Frances MacDormand", "Genre": "Black Comedy", "Age": 39, "Birthplace": "America", "Film": "Fargo", "Year": "1996" },
+        { "name": "Helen Hunt", "Genre": "Rom-Com", "Age": 34, "Birthplace": "America", "Film": "As Good As It Gets", "Year": "1997" },
+        { "name": "Gwyneth Palthrow", "Genre": "Rom-Com", "Age": 26, "Birthplace": "America", "Film": "Shakespeare In Love", "Year": "1998" },
+        { "name": "Hilary Swank", "Genre": "Drama", "Age": 25, "Birthplace": "America", "Film": "Boys Dont Cry", "Year": "1999" },
+        { "name": "Julia Roberts", "Genre": "Biographical", "Age": 33, "Birthplace": "America", "Film": "Erin Brockovich", "Year": "2000" },
+        { "name": "Halle Berry", "Genre": "Romantic-Drama", "Age": 35, "Birthplace": "America", "Film": "Monster's Ball", "Year": "2001" },
+        { "name": "Nicole Kidman", "Genre": "Psychological", "Age": 35, "Birthplace": "Australia", "Film": "The Hours", "Year": "2002" },
+        { "name": "Charlize Theron", "Genre": "Biographical", "Age": 28, "Birthplace": "South Africa", "Film": "Monster", "Year": "2003" },
+        { "name": "Hilary Swank(2nd)", "Genre": "Drama", "Age": 30, "Birthplace": "America", "Film": "Million Dollar Baby", "Year": "2004" },
+        { "name": "Reese Witherspoon", "Genre": "Biographical", "Age": 29, "Birthplace": "America", "Film": "Walk The Line", "Year": "2005" },
+        { "name": "Helen Mirren", "Genre": "Biographical", "Age": 61, "Birthplace": "England", "Film": "The Queen", "Year": "2006" },
+        { "name": "Marion Cotillard", "Genre": "Biographical", "Age": 31, "Birthplace": "France", "Film": "La Vie En Rose", "Year": "2007" },
+        { "name": "Kate Winslet", "Genre": "Romantic-Drama", "Age": 33, "Birthplace": "England", "Film": "The Reader", "Year": "2008" },
+        { "name": "Sandra Bullock", "Genre": "Biographical", "Age": 45, "Birthplace": "America", "Film": "The Blind Side", "Year": "2009" },
+        { "name": "Natalie Portman", "Genre": "Psychological", "Age": 29, "Birthplace": "Isreal", "Film": "Black Swan", "Year": "2010" },
+        { "name": "Meryl Streep(2nd)", "Genre": "Biographical", "Age": 62, "Birthplace": "America", "Film": "The Iron Lady", "Year": "2011" },
+        { "name": "Jennifer Lawrence", "Genre": "Rom-Com", "Age": 21, "Birthplace": "America", "Film": "Silver Linings Playbook", "Year": "2012" },
+        { "name": "Cate Blanchett", "Genre": "Black Comedy", "Age": 44, "Birthplace": "Australia", "Film": "Blue Jasmine", "Year": "2013" },
+        { "name": "Julianne Moore", "Genre": "Drama", "Age": 53, "Birthplace": "America", "Film": "Still Alice", "Year": "2014" },
+        { "name": "Brie Larson", "Genre": "Drama", "Age": 25, "Birthplace": "America", "Film": "Room", "Year": "2015" },
+        { "name": "Emma Stone", "Genre": "Musical", "Age": 27, "Birthplace": "America", "Film": "La La Land", "Year": "2016" },
+        { "name": "Frances MacDormand", "Genre": "Black Comedy", "Age": 60, "Birthplace": "America", "Film": "3 Billboards Outside Ebbing Missouri", "Year": "2017" },
+        { "name": "Olivia Colman", "Genre": "Black Comedy", "Age": 45, "Birthplace": "England", "Film": "The Favorite", "Year": "2018" },
+    ];
+</script>

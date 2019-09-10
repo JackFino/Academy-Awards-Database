@@ -18,12 +18,20 @@
 <body style="background-color:#fafafa;">
     
       
-   <nav class="navbar navbar-fixed-top navbar-expand-lg" id="navbar">
-       <img src="../logo.png" alt="Academy Awards Database Logo"> </a>
-       
-       
+ <nav class="navbar navbar-fixed-top" id="navbar">
+        <a href="#">  <img src="../logo.png" alt="Academy Awards Database Logo"> </a>
+        <ul class="navbar-nav mr-auto">
 
-          </div>
+            <li class="nav-item active">
+                <a class="nav-link" href="#firstsection"> Database <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#secondsection"> Graphs </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#thirdsection">About</a>
+            </li>
+        </ul>
     </nav>
     
     
@@ -56,6 +64,11 @@
 
 
 
+
+
+
+
+
 <script>
 
 
@@ -73,7 +86,27 @@
     });
     $('#nominees-table').append(academy_data);
     });
+   
+    
+    
+    
+    function searchByYear(year) {
+   let result = [];
+
+   data.map((year) => {
+       if (value.year === year) {
+           
+           continue ()
+           result.push(value);
+       }
+   });
+}
+
 });    
+
+
+
+    
     
     
 </script>

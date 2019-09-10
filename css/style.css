@@ -5,12 +5,11 @@
 
 .navbar{
     border: .5px solid #dedede;
-    border-radius: 2px;
     display: inline;
     margin: 0;
     overflow: hidden;
     width: 100%; 
-    height: 50%
+    height: 50%;
     padding: 0;
     position: fixed;
     top: 0;
@@ -23,9 +22,98 @@
 
 }
 
-.mt-n1 {
-  margin-top: -0.25rem !important;
+
+.navbar-nav li a{
+ display: block;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 18px;
+    font-family: "Exo", sans-serif;
+    padding: 4px;
+    margin: 3px 3px;
+    float: right;
 }
+
+.navbar-nav li a:hover {
+     color: #D4AF37 !important;
+}
+
+
+
+
+/*----Database link----*/
+
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.middle2 {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+.middle3 {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #D4AF37;
+  color: white;
+  font-size: 12px;
+  padding: 12px 24px;
+  font-family: "Exo", sans-serif;
+  
+}
+
+.text2 {
+  background-color: #D4AF37;
+  color: white;
+  font-size: 12px;
+  padding: 12px 24px;
+  font-family: "Exo", sans-serif;
 
 
 
@@ -46,3 +134,10 @@
   text-align: center;
   font-size: larger;
 }
+
+
+
+
+
+
+
